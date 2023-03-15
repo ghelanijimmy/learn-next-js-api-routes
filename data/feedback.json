@@ -1,12 +1,1 @@
-[
-  {
-    "id": "2023-03-15T15:20:14.541Z",
-    "email": "test@test.com",
-    "text": "John Doe"
-  },
-  {
-    "id": "2023-03-15T15:21:57.725Z",
-    "email": "test@test.com",
-    "text": "John Doe"
-  }
-]
+[{"id":"2023-03-15T15:20:14.541Z","email":"test@test.com","text":"John Doe"},{"id":"2023-03-15T15:21:57.725Z","email":"test@test.com","text":"John Doe"},{"id":"2023-03-15T19:04:50.010Z","email":"ghelanijimmy@icloud.com","text":"Some test"},{"id":"2023-03-15T19:05:08.294Z","email":"ghelanijimmy@icloud.com","text":"Some test"}]

@@ -1,6 +1,16 @@
 import fs from "fs";
 import path from "path";
+
+function buildFeedbackPath() {
+  return path.join(process.cwd(), "data", "feedback.json");
+}
+
+function extractFeedback(filePath) {
+  return JSON.parse(fs.readFileSync(filePath).toString());
+}
+
 export default function handler(req, res) {
+  const filePath = buildFeedbackPath();
   if (req.method === "POST") {
     const { email, text } = req.body;
 
@@ -16,11 +26,7 @@ export default function handler(req, res) {
       text,
     };
 
-    const filePath = path.join(process.cwd(), "data", "feedback.json");
-
-    const fileData = fs.readFileSync(filePath);
-
-    const data = JSON.parse(fileData.toString());
+    const data = extractFeedback(filePath);
 
     data.push(newFeedback);
 
@@ -28,6 +34,7 @@ export default function handler(req, res) {
 
     res.status(201).json({ message: "Success!", feedback: newFeedback });
   } else {
-    res.status(200).json({ message: "This is a feedback page" });
+    const data = extractFeedback(filePath);
+    res.status(200).json({ feedback: data });
   }
 }

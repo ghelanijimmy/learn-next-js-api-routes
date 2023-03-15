@@ -1,8 +1,16 @@
-import { Fragment, useRef } from "react";
+import { Fragment, useRef, useState } from "react";
 
 function HomePage() {
   const emailRef = useRef();
   const feedbackRef = useRef();
+
+  const [feedback, setFeedback] = useState([]);
+
+  function loadFeedbackHandler() {
+    fetch("/api/feedback")
+      .then((res) => res.json())
+      .then((data) => setFeedback(data.feedback));
+  }
 
   function sendFeedbackHandler(event) {
     event.preventDefault();
@@ -36,6 +44,13 @@ function HomePage() {
         </div>
         <button>Send Feedback</button>
       </form>
+      <hr />
+      <button onClick={loadFeedbackHandler}>Get Feedback</button>
+      <ul>
+        {feedback.map((item) => (
+          <li key={item.id}>{item.text}</li>
+        ))}
+      </ul>
     </Fragment>
   );
 }
